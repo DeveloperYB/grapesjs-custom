@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>GrapesJS Plugin</title>
-    <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/grapesjs"></script>
+    <script src="node_modules/grapesjs/dist/grapes.min.js"></script>
+    <link href="node_modules/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
+    
     <script src="dist/grapesjs-mjml.min.js"></script>
     <style>
       body, html{ height: 100%; margin: 0;}
@@ -24,82 +25,28 @@
   <body>
 
     <div id="gjs" style="height:0px; overflow:hidden">
+      <mjml>
+        <mj-body>
+          <mj-container>
 
-      <mj-container>
-        <!-- Company Header -->
-        <mj-section background-color="#f0f0f0">
-          <mj-column>
-            <mj-text font-style="italic" font-size="20" color="#626262">
-              My Company
-            </mj-text>
-          </mj-column>
-        </mj-section>
+              <!-- Company Header -->
+              <mj-section background-color="#f0f0f0">
+                <mj-column>
+                  <mj-text font-style="italic" font-size="20" color="#626262">
+                    My Company
+                  </mj-text>
+                </mj-column>
+              </mj-section>
 
-        <!-- Image Header -->
-        <mj-section background-url="http://1.bp.blogspot.com/-TPrfhxbYpDY/Uh3Refzk02I/AAAAAAAALw8/5sUJ0UUGYuw/s1600/New+York+in+The+1960's+-+70's+(2).jpg" background-size="cover" background-repeat="no-repeat">
-          <mj-column>
-            <mj-text align="center" color="#fff" font-size="40" font-family="Helvetica Neue">Slogan here</mj-text>
-            <mj-button background-color="#F63A4D" href="#">
-              Promotion
-            </mj-button>
-          </mj-column>
-        </mj-section>
-
-        <!-- Intro text -->
-        <mj-section background-color="#fafafa">
-          <mj-column width="400">
-            <mj-text font-style="italic" font-size="20" font-family="Helvetica Neue" color="#626262">My Awesome Text</mj-text>
-            <mj-text color="#525252">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget magna efficitur, eu semper augue semper. Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed finibus lectus, sit amet suscipit nibh. Proin nec commodo purus. Sed eget
-              nulla elit. Nulla aliquet mollis faucibus.
-            </mj-text>
-            <mj-button background-color="#F45E43" href="#">Learn more</mj-button>
-          </mj-column>
-        </mj-section>
-
-        <!-- Side image -->
-        <mj-section background-color="white">
-          <mj-column>
-            <mj-image width="200" src="https://designspell.files.wordpress.com/2012/01/sciolino-paris-bw.jpg" />
-          </mj-column>
-          <mj-column>
-            <mj-text font-style="italic" font-size="20" font-family="Helvetica Neue" color="#626262">
-              Find amazing places
-            </mj-text>
-            <mj-text color="#525252">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget magna efficitur, eu semper augue semper. Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed finibus lectus.</mj-text>
-          </mj-column>
-        </mj-section>
-
-
-        <!-- Icons -->
-        <mj-section background-color="#fbfbfb">
-          <mj-column>
-            <mj-image width="100" src="http://191n.mj.am/img/191n/3s/x0l.png" />
-          </mj-column>
-          <mj-column>
-            <mj-image width="100" src="http://191n.mj.am/img/191n/3s/x01.png" />
-          </mj-column>
-          <mj-column>
-            <mj-image width="100" src="http://191n.mj.am/img/191n/3s/x0s.png" />
-          </mj-column>
-        </mj-section>
-
-        <!-- Footer -->
-        <mj-section background-color="#e7e7e7">
-          <mj-column>
-            <mj-button href="#">Hello There!</mj-button>
-            <mj-social display="facebook twitter" />
-          </mj-column>
-        </mj-section>
-        <!-- Footer -->
-      </mj-container>
-
-
+          </mj-container>
+        </mj-body>
+      </mjml>
     </div>
 
 
     <script type="text/javascript">
+      console.log(grapesjs);
+      /*
       var editor = grapesjs.init({
         height: '100%',
         noticeOnUnload: 0,
@@ -109,10 +56,86 @@
 
         plugins: ['gjs-mjml'],
         pluginsOpts: {
-          'gjs-mjml': {}
+          'gjs-mjml': {
+          }
         }
       });
-
+      */
+      //mj-container mj-section mj-column mj-text mj-image mj-button mj-social mj-divider mj-spacer
+      
+      var editor = grapesjs.init({
+          container : '#gjs',
+          height: '100%',
+          storageManager: {type: 'none'},
+          components: '<div style="width:300px; min-height:100px; margin: 0 auto"></div>' +
+              '<div style="width:400px; min-height:100px; margin: 0 auto"></div>' +
+              '<div style="width:500px; min-height:100px; margin: 0 auto"></div>',
+          panels: {
+            defaults  : [{
+              id      : 'commands',
+              buttons : [{
+                  id          : 'mainLogo',
+                  className   : '',
+                  attributes  : {
+                    title: 'main-logo',
+                    style: 'background: url("/src/images/main-logo.png");background-size:cover;width: 33px;'
+                  },
+                  command     : 'myCommand'
+              },{
+                id          : 'smile',
+                className   : 'fa fa-smile-o',
+                attributes  : { title: 'Smile' },
+                command     : 'helloWorld'
+              },{
+                id        : 'vis',
+                className : 'fa fa-eye',
+                command   : 'sw-visibility',
+                context   : 'some-random-context', // For grouping context of buttons in the same panel
+                active    : true
+              }]
+            }]
+          },
+          commands : {
+            defaults: [{
+              id: 'helloWorld',
+              run:  function(editor, sender){
+                console.log('run!!!');
+                alert('run?!');
+              },
+              stop:  function(editor, sender){
+                console.log('Stop!!!');
+                alert('Stop!');
+              },
+            }]
+          }
+      });
+      var commands = editor.Commands;
+      commands.add('myCommand', {
+        run:  function(editor, sender){
+          alert('Hello world!');
+        },
+        stop:  function(editor, sender){
+        },
+      });
+      var domComponents = editor.DomComponents;
+      /*
+      var comp1 = domComponents.addComponent({
+        tagName: 'div',
+        removable: true, // Can't remove it
+        draggable: true, // Can't move it
+        copyable: true, // Disable copy/past
+        content: 'Content text', // Text inside component
+        style: { color: 'red'},
+        attributes: { title: 'here' }
+      });
+      */
+      console.log(domComponents);
+      /*
+      var testFn = commands.get('helloWorld');
+      testFn.run();
+      console.log(testFn);
+      console.log(commands);
+      */
       window.editor = editor;
     </script>
   </body>

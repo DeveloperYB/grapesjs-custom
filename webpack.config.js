@@ -27,6 +27,8 @@ module.exports = (env = {}) => {
         libraryTarget: 'umd',
     },
     module: {
+      exprContextRegExp: /$^/,
+      exprContextCritical: false,
       loaders: [{
           test: /\.js$/,
           loader: 'babel-loader',
